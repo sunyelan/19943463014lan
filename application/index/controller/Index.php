@@ -5,7 +5,7 @@ use think\Db;
 class Index  extends Controller
 {
     public function index()
-    {   豆腐经过冷冻
+    {   $data = input("post.");$data = input("post.");
         $data = input("post.");
         // $data['code'] = "2345";
         $validate = validate('Index');
