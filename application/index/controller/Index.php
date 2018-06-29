@@ -5,9 +5,9 @@ use think\Db;
 class Index  extends Controller
 {
     public function index()
-    {   $data = input("post.");$data = input("post.");
+    {  
+        $aa = 123;
         $data = input("post.");
-        // $data['code'] = "2345";
         $validate = validate('Index');
         if($validate->check($data)){
         	 $arr = Db::table("t_admin")->where('a_user',$data['a_user'])->find();
