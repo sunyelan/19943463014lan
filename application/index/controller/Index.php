@@ -3,10 +3,10 @@ namespace app\index\controller;
 use think\Controller;
 use think\Db;
 class Index  extends Controller
-{
+{   
+    //登录
     public function index()
     {  
-        $aa = 123;
         $data = input("post.");
         $validate = validate('Index');
         if($validate->check($data)){
@@ -27,6 +27,29 @@ class Index  extends Controller
         	$this->result('',0,$validate->getError());
         }
     }
+    //注册
+    public function reg(){
+        $data = input("post.");
+        $data['a_time'] = time();
+        $validate = validate('Reg');
+        $arr = Db::table("t_admin")->where('a_phone',$data['a_phone'])->find();
+        if($validate->check($data)){
+            if($arr==false){
+                $arr = Db::table("t_admin")->insert($data);
+                 if($arr){
+                    $this->result($data,1,'注册成功');
+                 }else{
+                    $this->result('',0,'注册失败');
+                 }
+            }else{
+                    $this->result('',0,'该手机号已注册');
+            }
+        }else{
+            $this->result('',0,$validate->getError());
+        }
+    }
+    
+
    
 
 }
